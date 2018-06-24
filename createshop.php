@@ -89,14 +89,14 @@ function createshop_ConfigOptions()
 {
     return array(
         // the dropdown field type renders a select menu of options
-        'Dropdown Field' => array(
+        'CMS' => array(
             'Type' => 'dropdown',
             'Options' => array(
                 'opencart_latest' => 'OpenCart',
             ),
             'Description' => 'Choose CMS',
         ),
-        'Dropdown Field' => array(
+        'cPanel Package' => array(
             'Type' => 'dropdown',
             'Options' => array(
                 'OnlineShop' => 'OnlineShop',
