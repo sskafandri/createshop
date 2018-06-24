@@ -92,7 +92,9 @@ function createshop_ConfigOptions()
         'CMS' => array(
             'Type' => 'dropdown',
             'Options' => array(
-                'opencart_latest' => 'OpenCart',
+                '499' => 'OpenCart 3.0.2.0',
+                '611' => 'OpenCart 2.3.0.2',
+                '70' => 'OpenCart 1.5.6.4',
             ),
             'Description' => 'Choose CMS',
         ),
@@ -151,7 +153,7 @@ function createshop_CreateAccount(array $params)
         $new->data['store_desc'] = $params['customfields']['Кратко Описание'];
         $new->data['store_address'] = $params['customfields']['Адрес на магазин'];
         $new->data['store_owner'] = $params['clientsdetails']['firstname'] . ' ' . $params['clientsdetails']['lastname'];
-        $res = $new->install(70); // Will install Opencart
+        $res = $new->install($params['configoption1']); // Will install Opencart
         if ($res != 'installed') {
             throw new Exception('Could not install.');
         }
