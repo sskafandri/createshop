@@ -1,5 +1,10 @@
 {
     "require": {
         "gufy/cpanel-whm": "dev-master"
+    },
+    "autoload": {
+        "files": [
+            "src/function/include.php"
+        ]
     }
 }
