@@ -150,7 +150,7 @@ function createshop_CreateAccount(array $params)
         $new->data['store_name'] = $params['customfields']['Име на магазин'];
         $new->data['store_desc'] = $params['customfields']['Кратко Описание'];
         $new->data['store_address'] = $params['customfields']['Адрес на магазин'];
-        $new->data['store_owner'] = $params['clientsdetails']['firstname'] . $params['clientsdetails']['lastname'];
+        $new->data['store_owner'] = $params['clientsdetails']['firstname'] . ' ' . $params['clientsdetails']['lastname'];
         $res = $new->install(70); // Will install Opencart
         if ($res != 'installed') {
             throw new Exception('Could not install.');
