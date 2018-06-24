@@ -145,6 +145,7 @@ function createshop_CreateAccount(array $params)
         sleep(5); // wait for the account to be provisioned
         $new = new Soft_Install();
         $new->login = 'https://'.$params['username'].':'.$params['password'].'@'.$params['serverip'].':2083/frontend/paper_lantern/softaculous/index.live.php';
+        $new->data['softproto'] = 3; // https:// 4-> https://www.
         $new->data['softdomain'] = $params['domain']; // OPTIONAL - By Default the primary domain will be used
         $new->data['softdirectory'] = ''; // OPTIONAL - By default it will be installed in the /public_html folder
         $new->data['admin_pass'] = $params['password'];
@@ -153,6 +154,8 @@ function createshop_CreateAccount(array $params)
         $new->data['store_desc'] = $params['customfields']['Кратко Описание'];
         $new->data['store_address'] = $params['customfields']['Адрес на магазин'];
         $new->data['store_owner'] = $params['clientsdetails']['firstname'] . ' ' . $params['clientsdetails']['lastname'];
+        $new->data['admin_fname'] = $params['clientsdetails']['firstname'];
+        $new->data['admin_lname'] = $params['clientsdetails']['lastname'];
         $res = $new->install($params['configoption1']); // Will install Opencart
         if ($res != 'installed') {
             throw new Exception('Could not install.');
@@ -265,7 +268,7 @@ function createshop_TerminateAccount(array $params)
             $key = $params['serveraccesshash'];
         }
         $cpanel = new \Gufy\CpanelPhp\Cpanel([
-              'host'        =>  $prot . '://' . $params['serverip'] . ':' . $params['serverport'], // ip or domain complete with its protocol and port
+              'host'        =>  $prot . '://' . $params['serverip'] . ':' . $params['serverport'], // ip or domain complete with its protocol and Port
               'username'    =>  $params['serverusername'], // username of your server, it usually root.
               'auth_type'   =>  $auth, // set 'hash' or 'password'
               'password'    =>  $key, // long hash or your user's password
