@@ -126,7 +126,7 @@ function createshop_CreateAccount(array $params)
 {
     try {
         $prot = ($params['serversecure'] == true) ? 'https' : 'http';
-        $auth = !emptyy($params['serverpassword']) ? 'password' : 'hash';
+        $auth = !empty($params['serverpassword']) ? 'password' : 'hash';
         $key = '';
         if ($auth == 'password') {
             $key = $params['serverpassword'];
