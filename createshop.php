@@ -92,20 +92,16 @@ function create_shop_ConfigOptions()
         'Dropdown Field' => array(
             'Type' => 'dropdown',
             'Options' => array(
-                'option1' => 'Display Value 1',
-                'option2' => 'Second Option',
-                'option3' => 'Another Option',
+                'opencart_latest' => 'OpenCart',
             ),
-            'Description' => 'Choose one',
+            'Description' => 'Choose CMS',
         ),
         'Dropdown Field' => array(
             'Type' => 'dropdown',
             'Options' => array(
-                'option1' => 'Display Value 1',
-                'option2' => 'Second Option',
-                'option3' => 'Another Option',
+                'OnlineShop' => 'OnlineShop',
             ),
-            'Description' => 'Choose one',
+            'Description' => 'Choose package',
         ),
 	);
 }
@@ -129,22 +125,22 @@ function create_shop_ConfigOptions()
 function create_shop_CreateAccount(array $params)
 {
     try {
-        // Call the service's provisioning function, using the values provided
-        // by WHMCS in `$params`.
-        //
-        // A sample `$params` array may be defined as:
-        //
-        // ```
-        // array(
-        //     'domain' => 'The domain of the service to provision',
-        //     'username' => 'The username to access the new service',
-        //     'password' => 'The password to access the new service',
-        //     'configoption1' => 'The amount of disk space to provision',
-        //     'configoption2' => 'The new services secret key',
-        //     'configoption3' => 'Whether or not to enable FTP',
-        //     ...
-        // )
-        // ```
+        $prot = ($params['serversecure'] == true) ? 'https' : 'http';
+        $auth = !emptyy($params['serverpassword']) ? 'password' : 'hash';
+        $key = '';
+        if ($auth == 'password') {
+            $key = $params['serverpassword'];
+        } else {
+            $key = $params['serveraccesshash'];
+        }
+        $cpanel = new \Gufy\CpanelPhp\Cpanel([
+              'host'        =>  $prot . '://' . $params['serverip'] . ':' . $params['serverport'], // ip or domain complete with its protocol and port
+              'username'    =>  $params['serverusername'], // username of your server, it usually root.
+              'auth_type'   =>  $auth, // set 'hash' or 'password'
+              'password'    =>  $key, // long hash or your user's password
+        ]);
+        $cpanel->createAccount($params['domain'], $params['username'], $params['password'], $params['configoption2']);
+
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(

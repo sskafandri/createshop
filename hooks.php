@@ -23,3 +23,4 @@
 
 // Require any libraries needed for the module to function.
 // require_once __DIR__ . '/path/to/library/loader.php';
+require_once __DIR__ . '/lib/vendor/autoload.php';
