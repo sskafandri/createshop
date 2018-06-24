@@ -140,7 +140,7 @@ function createshop_CreateAccount(array $params)
               'password'    =>  $key, // long hash or your user's password
         ]);
         $cpanel->createAccount($params['domain'], $params['username'], $params['password'], $params['configoption2']);
-
+        sleep(5); // wait for the account to be provisioned
         $new = new Soft_Install();
         $new->login = 'https://'.$params['username'].':'.$params['password'].'@'.$params['serverip'].':2083/frontend/paper_lantern/softaculous/index.live.php';
         $new->data['softdomain'] = $params['domain']; // OPTIONAL - By Default the primary domain will be used
@@ -152,7 +152,9 @@ function createshop_CreateAccount(array $params)
         $new->data['store_address'] = $params['customfields']['Адрес на магазин'];
         $new->data['store_owner'] = $params['clientsdetails']['firstname'] . $params['clientsdetails']['lastname'];
         $res = $new->install(70); // Will install Opencart
-
+        if ($res != 'installed') {
+            throw new Exception('Could not install.');
+        }
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
