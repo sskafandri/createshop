@@ -256,8 +256,21 @@ function createshop_UnsuspendAccount(array $params)
 function createshop_TerminateAccount(array $params)
 {
     try {
-        // Call the service's terminate function, using the values provided by
-        // WHMCS in `$params`.
+        $prot = ($params['serversecure'] == true) ? 'https' : 'http';
+        $auth = !empty($params['serverpassword']) ? 'password' : 'hash';
+        $key = '';
+        if ($auth == 'password') {
+            $key = $params['serverpassword'];
+        } else {
+            $key = $params['serveraccesshash'];
+        }
+        $cpanel = new \Gufy\CpanelPhp\Cpanel([
+              'host'        =>  $prot . '://' . $params['serverip'] . ':' . $params['serverport'], // ip or domain complete with its protocol and port
+              'username'    =>  $params['serverusername'], // username of your server, it usually root.
+              'auth_type'   =>  $auth, // set 'hash' or 'password'
+              'password'    =>  $key, // long hash or your user's password
+        ]);
+        $cpanel->destroyAccount($params['username']);
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
