@@ -15,8 +15,8 @@
  *
  * Within the module itself, all functions must be prefixed with the module
  * filename, followed by an underscore, and then the function name. For this
- * example file, the filename is "create_shop" and therefore all
- * functions begin "create_shop_".
+ * example file, the filename is "createshop" and therefore all
+ * functions begin "createshop_".
  *
  * If your module or third party API does not support a given function, you
  * should not define that function within your module. Only the _ConfigOptions
@@ -85,7 +85,7 @@ function createshop_MetaData()
  *
  * @return array
  */
-function create_shop_ConfigOptions()
+function createshop_ConfigOptions()
 {
     return array(
         // the dropdown field type renders a select menu of options
@@ -122,7 +122,7 @@ function create_shop_ConfigOptions()
  *
  * @return string "success" or an error message
  */
-function create_shop_CreateAccount(array $params)
+function createshop_CreateAccount(array $params)
 {
     try {
         $prot = ($params['serversecure'] == true) ? 'https' : 'http';
@@ -144,7 +144,7 @@ function create_shop_CreateAccount(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'create_shop',
+            'createshop',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -170,7 +170,7 @@ function create_shop_CreateAccount(array $params)
  *
  * @return string "success" or an error message
  */
-function create_shop_SuspendAccount(array $params)
+function createshop_SuspendAccount(array $params)
 {
     try {
         // Call the service's suspend function, using the values provided by
@@ -178,7 +178,7 @@ function create_shop_SuspendAccount(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'create_shop',
+            'createshop',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -204,7 +204,7 @@ function create_shop_SuspendAccount(array $params)
  *
  * @return string "success" or an error message
  */
-function create_shop_UnsuspendAccount(array $params)
+function createshop_UnsuspendAccount(array $params)
 {
     try {
         // Call the service's unsuspend function, using the values provided by
@@ -212,7 +212,7 @@ function create_shop_UnsuspendAccount(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'create_shop',
+            'createshop',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -237,7 +237,7 @@ function create_shop_UnsuspendAccount(array $params)
  *
  * @return string "success" or an error message
  */
-function create_shop_TerminateAccount(array $params)
+function createshop_TerminateAccount(array $params)
 {
     try {
         // Call the service's terminate function, using the values provided by
@@ -245,7 +245,7 @@ function create_shop_TerminateAccount(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'create_shop',
+            'createshop',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -274,7 +274,7 @@ function create_shop_TerminateAccount(array $params)
  *
  * @return string "success" or an error message
  */
-function create_shop_ChangePassword(array $params)
+function createshop_ChangePassword(array $params)
 {
     try {
         // Call the service's change password function, using the values
@@ -291,7 +291,7 @@ function create_shop_ChangePassword(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'create_shop',
+            'createshop',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -320,7 +320,7 @@ function create_shop_ChangePassword(array $params)
  *
  * @return string "success" or an error message
  */
-function create_shop_ChangePackage(array $params)
+function createshop_ChangePackage(array $params)
 {
     try {
         // Call the service's change password function, using the values
@@ -338,7 +338,7 @@ function create_shop_ChangePackage(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'create_shop',
+            'createshop',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -368,7 +368,7 @@ function create_shop_ChangePackage(array $params)
  *
  * @return array
  */
-function create_shop_TestConnection(array $params)
+function createshop_TestConnection(array $params)
 {
     try {
         // Call the service's connection test function.
@@ -378,7 +378,7 @@ function create_shop_TestConnection(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'create_shop',
+            'createshop',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -401,11 +401,11 @@ function create_shop_TestConnection(array $params)
  * Define additional actions that an admin user can perform for an
  * instance of a product/service.
  *
- * @see create_shop_buttonOneFunction()
+ * @see createshop_buttonOneFunction()
  *
  * @return array
  */
-function create_shop_AdminCustomButtonArray()
+function createshop_AdminCustomButtonArray()
 {
     return array(
         "Reinstall Shop" => "shop_reinstall",
@@ -424,7 +424,7 @@ function create_shop_AdminCustomButtonArray()
  *
  * @return array
  */
-function create_shop_ClientAreaCustomButtonArray()
+function createshop_ClientAreaCustomButtonArray()
 {
     return array(
         "Reset Login" => "shop_resetlogin",
@@ -442,11 +442,11 @@ function create_shop_ClientAreaCustomButtonArray()
  * @param array $params common module parameters
  *
  * @see https://developers.whmcs.com/provisioning-modules/module-parameters/
- * @see create_shop_AdminCustomButtonArray()
+ * @see createshop_AdminCustomButtonArray()
  *
  * @return string "success" or an error message
  */
-function create_shop_shop_reinstall(array $params)
+function createshop_shop_reinstall(array $params)
 {
     try {
         // Call the service's function, using the values provided by WHMCS in
@@ -454,7 +454,7 @@ function create_shop_shop_reinstall(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'create_shop',
+            'createshop',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -478,11 +478,11 @@ function create_shop_shop_reinstall(array $params)
  * @param array $params common module parameters
  *
  * @see https://developers.whmcs.com/provisioning-modules/module-parameters/
- * @see create_shop_ClientAreaCustomButtonArray()
+ * @see createshop_ClientAreaCustomButtonArray()
  *
  * @return string "success" or an error message
  */
-function create_shop_shop_resetlogin(array $params)
+function createshop_shop_resetlogin(array $params)
 {
     try {
         // Call the service's function, using the values provided by WHMCS in
@@ -490,7 +490,7 @@ function create_shop_shop_resetlogin(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'create_shop',
+            'createshop',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -515,11 +515,11 @@ function create_shop_shop_resetlogin(array $params)
  * @param array $params common module parameters
  *
  * @see https://developers.whmcs.com/provisioning-modules/module-parameters/
- * @see create_shop_AdminServicesTabFieldsSave()
+ * @see createshop_AdminServicesTabFieldsSave()
  *
  * @return array
  */
-function create_shop_AdminServicesTabFields(array $params)
+function createshop_AdminServicesTabFields(array $params)
 {
     try {
         // Call the service's function, using the values provided by WHMCS in
@@ -531,15 +531,15 @@ function create_shop_AdminServicesTabFields(array $params)
             'Number of Apples' => (int) $response['numApples'],
             'Number of Oranges' => (int) $response['numOranges'],
             'Last Access Date' => date("Y-m-d H:i:s", $response['lastLoginTimestamp']),
-            'Something Editable' => '<input type="hidden" name="create_shop_original_uniquefieldname" '
+            'Something Editable' => '<input type="hidden" name="createshop_original_uniquefieldname" '
                 . 'value="' . htmlspecialchars($response['textvalue']) . '" />'
-                . '<input type="text" name="create_shop_uniquefieldname"'
+                . '<input type="text" name="createshop_uniquefieldname"'
                 . 'value="' . htmlspecialchars($response['textvalue']) . '" />',
         );
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'create_shop',
+            'createshop',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -564,17 +564,17 @@ function create_shop_AdminServicesTabFields(array $params)
  * @param array $params common module parameters
  *
  * @see https://developers.whmcs.com/provisioning-modules/module-parameters/
- * @see create_shop_AdminServicesTabFields()
+ * @see createshop_AdminServicesTabFields()
  */
-function create_shop_AdminServicesTabFieldsSave(array $params)
+function createshop_AdminServicesTabFieldsSave(array $params)
 {
     // Fetch form submission variables.
-    $originalFieldValue = isset($_REQUEST['create_shop_original_uniquefieldname'])
-        ? $_REQUEST['create_shop_original_uniquefieldname']
+    $originalFieldValue = isset($_REQUEST['createshop_original_uniquefieldname'])
+        ? $_REQUEST['createshop_original_uniquefieldname']
         : '';
 
-    $newFieldValue = isset($_REQUEST['create_shop_uniquefieldname'])
-        ? $_REQUEST['create_shop_uniquefieldname']
+    $newFieldValue = isset($_REQUEST['createshop_uniquefieldname'])
+        ? $_REQUEST['createshop_uniquefieldname']
         : '';
 
     // Look for a change in value to avoid making unnecessary service calls.
@@ -585,7 +585,7 @@ function create_shop_AdminServicesTabFieldsSave(array $params)
         } catch (Exception $e) {
             // Record the error in WHMCS's module log.
             logModuleCall(
-                'create_shop',
+                'createshop',
                 __FUNCTION__,
                 $params,
                 $e->getMessage(),
@@ -610,7 +610,7 @@ function create_shop_AdminServicesTabFieldsSave(array $params)
  *
  * @return array
  */
-function create_shop_ServiceSingleSignOn(array $params)
+function createshop_ServiceSingleSignOn(array $params)
 {
     try {
         // Call the service's single sign-on token retrieval function, using the
@@ -624,7 +624,7 @@ function create_shop_ServiceSingleSignOn(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'create_shop',
+            'createshop',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -655,7 +655,7 @@ function create_shop_ServiceSingleSignOn(array $params)
  *
  * @return array
  */
-function create_shop_AdminSingleSignOn(array $params)
+function createshop_AdminSingleSignOn(array $params)
 {
     try {
         // Call the service's single sign-on admin token retrieval function,
@@ -669,7 +669,7 @@ function create_shop_AdminSingleSignOn(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'create_shop',
+            'createshop',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -713,7 +713,7 @@ function create_shop_AdminSingleSignOn(array $params)
  *
  * @return array
  */
-function create_shop_ClientArea(array $params)
+function createshop_ClientArea(array $params)
 {
     // Determine the requested action and set service call parameters based on
     // the action.
@@ -745,7 +745,7 @@ function create_shop_ClientArea(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'create_shop',
+            'createshop',
             __FUNCTION__,
             $params,
             $e->getMessage(),
